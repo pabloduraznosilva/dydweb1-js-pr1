@@ -1,23 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Práctica 1 JS</title>
+    <style>
+        :root {
+            --bg: linear-gradient(135deg, #1f3c88, #4b7ebd, #7fb0f3);
+            --card: rgba(255, 255, 255, 0.92);
+            --text: #112b4f;
+            --accent: #ffb200;
+            --shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            line-height: 1.45;
+        }
+
+        header, main, footer {
+            width: min(960px, 100%);
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            background: var(--card);
+            padding: 1.3rem 1.5rem;
+        }
+
+        header {
+            border-left: 8px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #13408f;
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            color: #555d79;
+        }
+
+        main {
+            background: rgba(255, 255, 255, 0.96);
+            border-left: 8px solid #4f9ce2;
+        }
+
+        #resultado {
+            background: #f3f7ff;
+            border: 1px solid #c6d9f8;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 10px;
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #223a70;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #2c3a6f;
+            background: rgba(255, 255, 255, 0.85);
+            border-left: 8px solid #76a6e0;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.65rem; }
+            header h2 { font-size: 1rem; }
+            body { padding: 0.7rem; }
+            header, main, footer { padding: 1rem; }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Práctica 1 JS</h1>
+        <h2>Diseño y Desarrollo Web</h2>
+    </header>
+
+    <main>
+        <p>En este ejercicio, el script solicita tu nombre y edad, y muestra el mensaje dentro de esta sección.</p>
+        <div id="resultado">Presiona Aceptar en los prompts para ver el resultado.</div>
+    </main>
+
+    <footer>
+        <p>© Derechos reservados | <span class="highlight">pablods@uets.edu.ec</span></p>
+    </footer>
+
     <script>
-        // Declaración de variables
-        let nombre;
-        let edad;
+        const nombre = prompt("¿Cuál es tu nombre?");
+        const edad = prompt("¿Cuántos años tienes?");
+        const resultado = document.getElementById('resultado');
 
-        //Recibir datos del usuario y asignarlos a las variables    
-        nombre = prompt("¿Cuál es tu nombre?");
-        edad = prompt("¿Cuántos años tienes?");
-
-        //Mostrar datos en página web
-        document.write("Hola " + nombre + ", tienes " + edad + " años.");
-        
+        if (!nombre || !edad) {
+            resultado.textContent = 'No ingresaste todos los datos. Refresca la página para intentarlo de nuevo.';
+        } else {
+            resultado.textContent = `Hola ${nombre}, tienes ${edad} años.`;
+        }
     </script>
 </body>
 </html>
